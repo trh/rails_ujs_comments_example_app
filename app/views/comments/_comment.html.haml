@@ -1,0 +1,10 @@
+-logger.info @comment
+-logger.info comment
+%div{class: "row comment comment-#{comment.id}"}
+  .col-sm-3
+    .smallcaps
+      #{ comment.created_at.strftime("%b %d, %Y")}
+  .col-sm-8
+    = comment.body
+  .col-sm-1
+    = link_to "Delete", post_comment_path(@post,comment), remote: true, method: :delete, data: { confirm: 'Are you sure?' }, id: "remove-comment-#{comment.id}", class: "remove-comment"

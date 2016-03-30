@@ -1,0 +1,32 @@
+%nav.navbar.navbar-default.navbar-custom.navbar-fixed-top
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header.page-scroll
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} Sample UJS/Ajax Comments App
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a{:href => "/"} Home
+        %li
+          %a{:href => "/posts/new"} New Post
+        %li
+          %a{:href => "https://github.com/trh/rails_ujs_comments_example_app"} GitHub
+    / /.navbar-collapse
+  / /.container
+/ Page Header
+/ Set your background image for this header on the line below.
+%header.intro-header{:style => "background-image: url(#{asset_url('home-bg.jpg')})"}
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+        .site-heading
+          %h1=content_for?(:page_header) ? yield(:page_header) : "Comments On A Single Page"
+          %hr.small/
+          %span.subheading=content_for?(:page_info) ? yield(:page_info) : "A simple rails app to display ajax comments, using ujs on a single post page"
+          

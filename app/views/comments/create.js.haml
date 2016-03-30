@@ -1,0 +1,6 @@
+$('#comments').prepend('#{j render("comment", comment: @comment) }');
+$('#add-comment form').find("input[type=text], textarea").val("");
+empty_message = $('#comments').find("span.empty-message");
+empty_message.text("");
+
+

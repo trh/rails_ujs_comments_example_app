@@ -1,0 +1,25 @@
+- content_for :page_header do
+  = @post.title
+- content_for :page_info do
+  = link_to content_tag(:i,'',class: "fa fa-pencil"), edit_post_path(@post)
+  = link_to content_tag(:i,'',class: "fa fa-list"), posts_path
+%p
+  = @post.body.capitalize
+
+%br/
+%ul.pagination
+  %li= link_to('Newer', post_path(@prev)) unless @prev.nil?
+  %li= link_to('Older', post_path(@next)) unless @next.nil?
+
+%br
+%h3 Comments
+#add-comment
+  = form_for [@post, @new_comment], remote: true do |f|
+    .form-fields
+      = f.text_area :body, class: "form-control"
+    .form-actions
+      = f.submit "Comment Now", class: "btn btn-primary"
+#comments
+  = @post.comments.count < 1 ? "<span class='empty-message'> No Comments for Post<\/span>".html_safe : ""
+  - @post.comments.order(created_at: :desc).each do |comment|
+    = render comment unless comment.new_record?
